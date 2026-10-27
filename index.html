@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohamed Gab Alla – Projekte</title>
+<meta name="description" content="Projekte und Code von Mohamed Gab Alla, Bewerber für die Ausbildung zum Fachinformatiker für Anwendungsentwicklung in Hamburg.">
+<meta name="author" content="Mohamed Gab Alla">
+<meta name="theme-color" content="#f7f6f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111113" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mohamed Gab Alla – Projekte">
+<meta property="og:description" content="Python, C, SQL und ein paar eigene Projekte. Bewerbung als Fachinformatiker für Anwendungsentwicklung in Hamburg.">
+<meta property="og:locale" content="de_DE">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2318181b'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='16' font-weight='700' fill='%23ff7a45' text-anchor='middle'%3EMG%3C/text%3E%3C/svg%3E">
+<script>
+  // Theme vor dem ersten Rendern setzen, damit nichts aufblitzt
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+    document.documentElement.classList.add('js');
+  })();
+</script>
+<style>
+  :root {
+    --bg: #f7f6f3;
+    --surface: #ffffff;
+    --text: #18181b;
+    --muted: #64646c;
+    --line: #e6e4df;
+    --accent: #d4521f;
+    --accent-soft: #fbe9e1;
+    --ok: #2fb36d;
+    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.05);
+    --nav-bg: rgba(247,246,243,.8);
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI Variable Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111113; --surface: #19191c; --text: #ececee; --muted: #9a9aa2;
+      --line: #2a2a2f; --accent: #ff7a45; --accent-soft: #2c1d17;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+      --nav-bg: rgba(17,17,19,.8);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #111113; --surface: #19191c; --text: #ececee; --muted: #9a9aa2;
+    --line: #2a2a2f; --accent: #ff7a45; --accent-soft: #2c1d17;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+    --nav-bg: rgba(17,17,19,.8);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 var(--sans);
+    -webkit-font-smoothing: antialiased;
+    transition: background .25s, color .25s;
+  }
+  .mono { font-family: var(--mono); }
+  a { color: inherit; }
+  p { margin: 0 0 14px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  ::selection { background: var(--accent); color: #fff; }
+
+  .skip {
+    position: absolute; left: 12px; top: -48px;
+    background: var(--text); color: var(--bg);
+    padding: 8px 14px; border-radius: 8px; z-index: 100;
+    text-decoration: none; font-size: 14px;
+  }
+  .skip:focus { top: 12px; }
+
+  /* Navigation */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--nav-bg);
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s;
+  }
+  .nav.scrolled { border-bottom-color: var(--line); }
+  .nav-inner {
+    max-width: 760px; margin: 0 auto; padding: 12px 20px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .brand {
+    font-weight: 700; text-decoration: none; letter-spacing: -.01em;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .brand .mark {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: var(--text); color: var(--accent);
+    display: grid; place-items: center;
+    font-size: 11px; font-weight: 700;
+  }
+  .nav-links { display: flex; align-items: center; gap: 4px; }
+  .nav-links a {
+    font-size: 14px; color: var(--muted); text-decoration: none;
+    padding: 6px 10px; border-radius: 8px;
+    transition: color .15s, background .15s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--surface); }
+  .theme-btn {
+    width: 34px; height: 34px; margin-left: 6px;
+    border-radius: 9px; border: 1px solid var(--line);
+    background: var(--surface); color: var(--text);
+    display: grid; place-items: center; cursor: pointer;
+  }
+  .theme-btn svg { width: 16px; height: 16px; }
+  .theme-btn .sun { display: none; }
+  :root[data-theme="dark"] .theme-btn .sun { display: block; }
+  :root[data-theme="dark"] .theme-btn .moon { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .theme-btn .sun { display: block; }
+    :root:not([data-theme="light"]) .theme-btn .moon { display: none; }
+  }
+
+  main { max-width: 760px; margin: 0 auto; padding: 72px 20px 48px; }
+
+  /* Hero */
+  .status {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--muted);
+    border: 1px solid var(--line); background: var(--surface);
+    padding: 5px 12px 5px 10px; border-radius: 999px;
+    margin-bottom: 28px;
+  }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--ok);
+    animation: pulse 2.4s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(47,179,109,.45); }
+    70% { box-shadow: 0 0 0 7px rgba(47,179,109,0); }
+    100% { box-shadow: 0 0 0 0 rgba(47,179,109,0); }
+  }
+  h1 {
+    font-size: clamp(34px, 6vw, 50px);
+    line-height: 1.08; letter-spacing: -.03em; font-weight: 700;
+    margin: 0 0 18px;
+  }
+  h1 .accent { color: var(--accent); }
+  .lead { font-size: 18px; color: var(--muted); max-width: 580px; margin-bottom: 28px; }
+  .lead strong { color: var(--text); font-weight: 600; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font: 500 14px/1 var(--sans);
+    text-decoration: none; cursor: pointer;
+    padding: 11px 16px; border-radius: 10px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--text);
+    transition: border-color .15s, transform .15s;
+  }
+  .btn:hover { border-color: var(--muted); transform: translateY(-1px); }
+  .btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  /* Sections */
+  section { margin-top: 96px; }
+  h2 { font-size: 26px; letter-spacing: -.02em; font-weight: 650; margin: 0 0 12px; }
+  .intro { color: var(--muted); margin-bottom: 24px; max-width: 600px; }
+
+  /* Project cards */
+  .cards { display: grid; gap: 14px; }
+  .card {
+    position: relative;
+    display: block; text-decoration: none;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 24px;
+    transition: border-color .2s, box-shadow .2s, transform .2s;
+  }
+  .card:hover {
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+    box-shadow: var(--shadow);
+  }
+  .card.featured { padding: 26px 26px 24px; }
+  .card.featured::before {
+    content: ""; position: absolute; left: -1px; top: 18px; bottom: 18px;
+    width: 3px; border-radius: 3px; background: var(--accent);
+  }
+  .card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+  .card h3 { font-size: 18px; font-weight: 650; margin: 0; letter-spacing: -.01em; }
+  .card .arrow { color: var(--muted); transition: color .2s, transform .2s; flex-shrink: 0; }
+  .card .arrow { text-decoration: none; padding: 2px 4px; }
+  .card:hover .arrow { color: var(--accent); transform: translate(2px, -2px); }
+  .card-link { text-decoration: none; }
+  .card-link:hover { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+  .media { margin: 0 0 16px; }
+  .media video, .media img {
+    display: block; width: 100%; height: auto;
+    border-radius: 10px; border: 1px solid var(--line); background: #1e1e1e;
+  }
+  .media-small img { width: auto; max-width: 100%; }
+  .media figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .card p { color: var(--muted); margin: 0 0 14px; }
+  .card ul { color: var(--muted); margin: -4px 0 16px; padding-left: 18px; }
+  .card ul li { margin-bottom: 3px; }
+  .badge {
+    display: inline-block; white-space: nowrap;
+    font-size: 12px; font-weight: 500;
+    color: var(--accent); background: var(--accent-soft);
+    padding: 2px 8px; border-radius: 6px;
+    margin-left: 8px; vertical-align: 2px;
+  }
+  .badge.wip { color: var(--ok); background: color-mix(in srgb, var(--ok) 14%, transparent); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; font-family: var(--mono); }
+  .tag {
+    font-size: 12px; padding: 3px 9px; border-radius: 6px;
+    background: var(--bg); border: 1px solid var(--line); color: var(--muted);
+  }
+
+  /* CS50 */
+  .highlight {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px 26px;
+    margin-bottom: 14px;
+    display: grid; grid-template-columns: 1fr 150px; gap: 24px; align-items: center;
+  }
+  .highlight h3 { font-size: 18px; margin: 0 0 8px; font-weight: 650; }
+  .highlight p { color: var(--muted); margin-bottom: 12px; }
+  .highlight .kicker { font-size: 14px; font-style: italic; margin: -2px 0 14px; }
+  .highlight .note { font-size: 14px; color: var(--muted); margin: 0; }
+  .highlight .note strong { color: var(--text); font-weight: 600; }
+  .graph { width: 100%; height: auto; }
+  .graph .edge { stroke: var(--muted); stroke-width: 1.6; fill: none; }
+  .graph .edge.skip { stroke: var(--accent); stroke-dasharray: 4 4; }
+  .graph .node { fill: var(--bg); stroke: var(--text); stroke-width: 1.6; }
+  .graph .node.win { fill: var(--accent); stroke: var(--accent); }
+  .graph text { font: 600 12px var(--sans); fill: var(--text); text-anchor: middle; dominant-baseline: central; }
+  .graph text.on { fill: #fff; }
+  .graph .arrowhead { fill: var(--muted); }
+  .graph .arrowhead.skip { fill: var(--accent); }
+
+  .psets {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .pset {
+    display: grid; grid-template-columns: 64px 1fr; gap: 14px; align-items: baseline;
+    padding: 13px 20px; border-top: 1px solid var(--line);
+  }
+  .pset:first-child { border-top: 0; }
+  .pset .lang { font: 12px var(--mono); color: var(--muted); }
+  .pset strong { font-weight: 600; }
+  .pset .desc { color: var(--muted); }
+  .small-note { font-size: 14px; color: var(--muted); margin-top: 14px; }
+  .small-note a { color: var(--text); text-decoration-color: var(--accent); text-underline-offset: 3px; }
+
+  /* Neben dem Code */
+  .aside {
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 22px;
+    max-width: 620px;
+  }
+  .aside h2 { font-size: 20px; margin-bottom: 8px; }
+  .aside p { color: var(--muted); margin: 0; }
+  .aside strong { color: var(--text); font-weight: 600; }
+  .photo { margin: 24px 0 0; }
+  .photo img {
+    display: block; width: 100%; height: auto;
+    aspect-ratio: 3 / 2; object-fit: cover; object-position: 25% 15%;
+    border-radius: 14px; border: 1px solid var(--line);
+  }
+
+  /* Contact */
+  .contact {
+    background: var(--text); color: var(--bg);
+    border-radius: 18px; padding: 40px 34px;
+    position: relative; overflow: hidden;
+  }
+  .contact::after {
+    content: ""; position: absolute; right: -60px; top: -60px;
+    width: 200px; height: 200px; border-radius: 50%;
+    border: 36px solid var(--accent); opacity: .18;
+  }
+  .contact h2 { margin-bottom: 8px; }
+  .contact p { opacity: .72; margin-bottom: 24px; max-width: 460px; }
+  .contact-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; position: relative; z-index: 1; }
+  .contact a.mail {
+    font-size: clamp(16px, 3.6vw, 20px); font-weight: 500;
+    text-decoration: none; border-bottom: 2px solid var(--accent);
+    padding-bottom: 2px; word-break: break-all;
+  }
+  .copy {
+    font: 500 13px var(--sans); cursor: pointer;
+    color: var(--bg); background: transparent;
+    border: 1px solid color-mix(in srgb, var(--bg) 30%, transparent);
+    padding: 7px 12px; border-radius: 8px;
+    transition: border-color .15s;
+  }
+  .copy:hover { border-color: var(--bg); }
+
+  footer {
+    max-width: 760px; margin: 0 auto; padding: 0 20px 40px;
+    font-size: 13px; color: var(--muted);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+  footer a { color: var(--muted); }
+
+  /* Animationen */
+  .fade { opacity: 0; transform: translateY(10px); animation: in .6s ease forwards; }
+  .d1 { animation-delay: .05s; } .d2 { animation-delay: .15s; }
+  .d3 { animation-delay: .25s; } .d4 { animation-delay: .35s; } 
+  @keyframes in { to { opacity: 1; transform: none; } }
+  .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+  .js .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .fade, .js .reveal { opacity: 1; transform: none; animation: none; transition: none; }
+    .dot { animation: none; }
+    *, *::before, *::after { transition: none !important; }
+  }
+
+  @media (max-width: 640px) {
+    .nav-links a.hide-sm { display: none; }
+    main { padding-top: 48px; }
+    section { margin-top: 76px; }
+    .card, .card.featured { padding: 18px; }
+    .highlight { grid-template-columns: 1fr; padding: 20px; gap: 16px; }
+    .highlight .graph { max-width: 170px; }
+    .pset { grid-template-columns: 1fr; gap: 0; padding: 12px 16px; }
+    .contact { padding: 30px 22px; }
+    .photo img { aspect-ratio: 4 / 3; object-position: 5% 15%; }
+  }
+
+  @media print {
+    .nav, .skip, .theme-btn, .copy, .status .dot, .links { display: none !important; }
+    body { background: #fff; color: #000; font-size: 12pt; }
+    main { padding-top: 0; }
+    section { margin-top: 32px; break-inside: avoid; }
+    .card, .highlight, .psets { box-shadow: none; border-color: #ccc; }
+    .contact { background: #fff; color: #000; border: 1px solid #ccc; }
+    .contact::after { display: none; }
+    .js .reveal, .fade { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#inhalt">Zum Inhalt springen</a>
+
+<nav class="nav" aria-label="Hauptnavigation">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="Nach oben"><span class="mark mono">MG</span>Mohamed Gab Alla</a>
+    <div class="nav-links">
+      <a class="hide-sm" href="#projekte">Projekte</a>
+      <a class="hide-sm" href="#cs50">CS50</a>
+      <a href="#kontakt">Kontakt</a>
+      <button class="theme-btn" type="button" id="themeBtn" aria-label="Farbschema wechseln" title="Hell/Dunkel">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="inhalt">
+
+  <header id="top">
+    <div class="status fade d1"><span class="dot" aria-hidden="true"></span>Suche einen Ausbildungsplatz in Hamburg</div>
+    <h1 class="fade d2">Hi, ich bin Mohamed.</h1>
+    <p class="lead fade d3">
+      Ich programmiere seit längerer Zeit in meiner Freizeit. Hier stelle ich ein paar Projekte vor, die ich gebaut habe.
+    </p>
+    <div class="links fade d4">
+      <a class="btn primary" href="mailto:Mohamed.Gab.Alla@outlook.com?subject=Ihre%20Bewerbung">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        E-Mail schreiben
+      </a>
+      <a class="btn" href="https://github.com/Moh-Devo" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </header>
+
+  <!-- ============ PROJEKTE ============ -->
+  <section id="projekte" class="reveal">
+    <h2>Eigene Projekte</h2>
+    <div class="cards">
+
+      <article class="card featured">
+        <div class="card-head">
+          <h3><a class="card-link" href="https://github.com/Moh-Devo/KindleFlashcards" target="_blank" rel="noopener">Kindle → Anki Flashcards <span class="badge">CS50 Final Project</span></a></h3>
+          <a class="arrow" href="https://github.com/Moh-Devo/KindleFlashcards" target="_blank" rel="noopener" aria-label="Code auf GitHub">↗</a>
+        </div>
+        <p>
+          Beim Lesen auf Englisch markiere ich in Kindle für PC einen Satz und gebe ein, welches Wort
+          daraus ich lernen möchte. Das Programm sucht Definitionen und Synonyme, lässt Gemini die
+          passende Bedeutung im Kontext samt Wortart und deutscher Übersetzung auswählen und legt
+          daraus über AnkiConnect eine fertige Karteikarte in Anki an. Kein Abtippen mehr.
+        </p>
+        <ul>
+          <li>Bedienung über die Kommandozeile</li>
+          <li>Anbindung an die Gemini API und an Anki über AnkiConnect</li>
+          <li>Die erste Version habe ich komplett selbst geschrieben. Sie hat gut funktioniert, vor allem für Englisch-Deutsch-Übersetzungen von selten genutzten Wörtern.</li>
+        </ul>
+        <figure class="media">
+          <video controls preload="none" playsinline width="1280" height="622"
+                 poster="medien/kindle-demo-poster.jpg">
+            <source src="medien/kindle-demo.mp4" type="video/mp4">
+          </video>
+          <figcaption>Demo: vom Satz im Kindle zur fertigen Karte in Anki (1:45)</figcaption>
+        </figure>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Gemini API</span><span class="tag">AnkiConnect</span><span class="tag">REST</span><span class="tag">CLI</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <h3><a class="card-link" href="https://github.com/Moh-Devo/DiscordBot_" target="_blank" rel="noopener">ELO-Discord-Bot</a></h3>
+          <a class="arrow" href="https://github.com/Moh-Devo/DiscordBot_" target="_blank" rel="noopener" aria-label="Code auf GitHub">↗</a>
+        </div>
+        <p>
+          Liest ELO-Wertungen von einer Website aus und zeigt sie auf Befehl im Discord-Server an.
+          Gebaut für Spieler, damit man entspannt von Discord aus seinen eigenen Rang oder den von anderen Spielern nachschauen kann.
+        </p>
+        <figure class="media media-small">
+          <img src="medien/elo-bot.png" width="413" height="239" loading="lazy" decoding="async"
+               alt="Antwort des Bots in Discord: Tabelle mit Charakteren, ELO-Wert, Abweichung und Anzahl gespielter Matches">
+          <figcaption>So sieht eine Antwort des Bots in Discord aus.</figcaption>
+        </figure>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Web Scraping</span><span class="tag">discord.py</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <h3><a class="card-link" href="https://github.com/Moh-Devo/Blackjack_" target="_blank" rel="noopener">Blackjack</a></h3>
+          <a class="arrow" href="https://github.com/Moh-Devo/Blackjack_" target="_blank" rel="noopener" aria-label="Code auf GitHub">↗</a>
+        </div>
+        <p>
+          Blackjack für die Kommandozeile mit Kartenstapel, Dealer-Logik und Einsätzen.
+          Eins meiner ersten richtigen Python-Programme.
+        </p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">CLI</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <h3><a class="card-link" href="https://github.com/Moh-Devo/TicTacToe" target="_blank" rel="noopener">TicTacToe</a></h3>
+          <a class="arrow" href="https://github.com/Moh-Devo/TicTacToe" target="_blank" rel="noopener" aria-label="Code auf GitHub">↗</a>
+        </div>
+        <p>
+          TicTacToe für die Kommandozeile, zwei Spieler an einer Tastatur. Das Programm prüft jede Eingabe
+          (nur Felder 1–9, keine belegten Felder), erkennt Sieg und Unentschieden und startet auf Wunsch eine neue Runde.
+        </p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">CLI</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ CS50 ============ -->
+  <section id="cs50" class="reveal">
+    <h2>CS50 – Harvard University</h2>
+    <p class="intro">Harvards Einführung in die Informatik: von C über Algorithmen und Datenstrukturen bis zu SQL und Webentwicklung. 2026 mit Zertifikat abgeschlossen.</p>
+
+    <div class="highlight">
+      <div>
+        <h3>Tideman <span class="badge">Lieblingsaufgabe</span></h3>
+        <p class="kicker">Optionale Zusatzaufgabe, auf der CS50-Seite angekündigt mit „if feeling very, very, very comfortable“.</p>
+        <p>
+          Ein Löser für Wahlen nach der Ranked-Pairs-Methode in C. Das Programm vergleicht jedes
+          Kandidatenpaar, sortiert die Paare nach Stärke des Sieges und trägt sie nacheinander als
+          Kanten in einen Graphen ein, aber nur, wenn dadurch <strong style="color:var(--text)">kein Kreis</strong> entsteht.
+          Die meisten durchsuchen dafür bei jedem neuen Paar den Graphen rekursiv. Ich führe stattdessen
+          für jeden Kandidaten eine laufende Liste, wer ihn erreichen kann: Jeder Gewinner „infiziert“
+          den Verlierer und alle, die hinter ihm liegen. So wird die Kreiserkennung zu einem einfachen Nachschlagen.
+        </p>
+        <p class="note"><strong>Code zeige ich gern im Gespräch.</strong> Die CS50-Regeln erlauben nicht, Lösungen öffentlich zu stellen.</p>
+      </div>
+      <svg class="graph" viewBox="0 0 150 130" role="img" aria-label="Beispielgraph: A schlägt B, B schlägt C, die Kante von C nach A würde einen Kreis bilden und wird übersprungen. A gewinnt.">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="arrowhead" d="M0 0 10 5 0 10z"/></marker>
+          <marker id="ahs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="arrowhead skip" d="M0 0 10 5 0 10z"/></marker>
+        </defs>
+        <line class="edge" x1="75" y1="36" x2="36" y2="92" marker-end="url(#ah)"/>
+        <line class="edge" x1="42" y1="104" x2="106" y2="104" marker-end="url(#ah)"/>
+        <line class="edge skip" x1="112" y1="92" x2="82" y2="36" marker-end="url(#ahs)"/>
+        <circle class="node win" cx="75" cy="22" r="15"/><text class="on" x="75" y="22">A</text>
+        <circle class="node" cx="27" cy="104" r="15"/><text x="27" y="104">B</text>
+        <circle class="node" cx="123" cy="104" r="15"/><text x="123" y="104">C</text>
+      </svg>
+    </div>
+
+    <div class="psets">
+      <div class="pset"><span class="lang">C</span><span><strong>Filter</strong> <span class="desc">– Bildfilter (Graustufen, Weichzeichner, Kanten) direkt auf BMP-Pixeldaten</span></span></div>
+      <div class="pset"><span class="lang">C</span><span><strong>Speller</strong> <span class="desc">– Rechtschreibprüfung mit eigener Hashtabelle, auf Geschwindigkeit optimiert</span></span></div>
+      <div class="pset"><span class="lang">Python</span><span><strong>DNA</strong> <span class="desc">– Personen anhand von DNA-Sequenzen aus einer CSV-Datenbank zuordnen</span></span></div>
+      <div class="pset"><span class="lang">SQL</span><span><strong>Fiftyville</strong> <span class="desc">– einen Kriminalfall nur mit SQL-Abfragen lösen</span></span></div>
+      <div class="pset"><span class="lang">Web</span><span><strong>Finance</strong> <span class="desc">– Aktienhandel-Simulation mit Flask, SQLite und Benutzerkonten</span></span></div>
+    </div>
+    <p class="small-note"><a href="https://cs50.harvard.edu/certificates/dbed5aa9-7864-458f-b6d4-cfc9afac3cfc" target="_blank" rel="noopener">Zertifikat ansehen</a> · Das Abschlussprojekt ist oben unter „Eigene Projekte“ verlinkt.</p>
+  </section>
+
+  <!-- ============ NEBEN DEM CODE ============ -->
+  <section id="neben-dem-code" class="reveal">
+    <div class="aside">
+      <h2>Neben dem Code</h2>
+      <p>
+        Seit 2025 spiele ich Fighting Games auf Wettkampfniveau, auf nationalen und internationalen
+        Turnieren und als Kapitän von Team Deutschland. Außerdem habe ich Coaching angeboten.
+        Das ist zwar nicht dasselbe wie Programmieren, aber das Prinzip ist ähnlich: Man verbessert sich
+        stetig und baut sein Können Schritt für Schritt aus. Ich suche eigene Fehler in Aufzeichnungen
+        meiner Matches (VOD-Review), übe gezielt und passe meine Strategie an bestimmte Gegner an.
+      </p>
+    </div>
+    <figure class="photo">
+      <img src="medien/turnier.jpg" width="1400" height="1054" loading="lazy" decoding="async"
+           alt="Mohamed mit Headset am Arcade-Controller auf der Turnierbühne, im Hintergrund die Halle und ein Kameramann">
+    </figure>
+  </section>
+
+  <!-- ============ KONTAKT ============ -->
+  <section id="kontakt" class="reveal">
+    <div class="contact">
+      <h2>Lust auf ein Gespräch?</h2>
+      <p>Ich freue mich über jede Nachricht und komme gern zum Kennenlernen oder Probearbeiten vorbei.</p>
+      <div class="contact-row">
+        <a class="mail" href="mailto:Mohamed.Gab.Alla@outlook.com?subject=Ihre%20Bewerbung">Mohamed.Gab.Alla@outlook.com</a>
+        <button class="copy" type="button" id="copyBtn" data-mail="Mohamed.Gab.Alla@outlook.com">Adresse kopieren</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>© 2026 Mohamed Gab Alla · Hamburg</span>
+  <a href="#top">nach oben ↑</a>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+
+    // Hell/Dunkel umschalten
+    var btn = document.getElementById('themeBtn');
+    btn.addEventListener('click', function () {
+      var current = root.getAttribute('data-theme') ||
+        (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+
+    // Rand unter der Navigation beim Scrollen
+    var nav = document.querySelector('.nav');
+    function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 8); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Abschnitte beim Scrollen einblenden + aktiven Menüpunkt markieren
+    var sections = document.querySelectorAll('.reveal');
+    var links = {};
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(function (a) {
+      links[a.getAttribute('href').slice(1)] = a;
+    });
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -10% 0px' });
+      sections.forEach(function (s) { io.observe(s); });
+
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          var a = links[e.target.id];
+          if (a) a.classList.toggle('active', e.isIntersecting);
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      document.querySelectorAll('section[id]').forEach(function (s) { spy.observe(s); });
+    } else {
+      sections.forEach(function (s) { s.classList.add('visible'); });
+    }
+
+    // E-Mail-Adresse kopieren
+    var copy = document.getElementById('copyBtn');
+    copy.addEventListener('click', function () {
+      var mail = copy.getAttribute('data-mail');
+      var done = function () {
+        copy.textContent = 'Kopiert ✓';
+        setTimeout(function () { copy.textContent = 'Adresse kopieren'; }, 1800);
+      };
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(mail).then(done, function () { window.location.href = 'mailto:' + mail; });
+      } else {
+        window.location.href = 'mailto:' + mail;
+      }
+    });
+  })();
+</script>
+</body>
+</html>
